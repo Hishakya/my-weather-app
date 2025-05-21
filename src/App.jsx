@@ -3,7 +3,6 @@ import axios from "axios";
 import './App.css'
 import Navbar from './components/Navbar'
 import Weather from './components/Weather';
-// import Card from './components/CArd';
 import Card from './components/Card'
 
 function App() {
@@ -13,8 +12,8 @@ function App() {
 
   const fetchweatherData = async (cityVal) => {
     const apiKey = "ccb910c0933ad6dccd6a5ee5e8794724"
-    const currWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&appid=${apiKey}`
-    const fiveDaysUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityVal}&appid=${apiKey}`
+    const currWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityVal}&units=metric&appid=${apiKey}`
+    const fiveDaysUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityVal}&units=metric&appid=${apiKey}`
     const getWeatherApi = await axios(currWeatherUrl)
     const getFiveDaysApi = await axios(fiveDaysUrl)
     setWeatherData(getWeatherApi?.data)
