@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import './App.css'
-import Navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import Weather from './components/Weather';
-import Card from './components/CArd';
+// import Card from './components/CArd';
+import Card from './components/Card'
 
 function App() {
   const [city, setCity] = useState('Delhi')
@@ -43,6 +44,7 @@ function App() {
         )}
       </div>
       <Card fiveDaysForcast={fiveDays} />
+
     </>
   )
 }
