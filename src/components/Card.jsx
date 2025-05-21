@@ -20,28 +20,32 @@ const Card = ({ fiveDaysForcast }) => {
         return new Date(timeStamp * 1000).toLocaleString('en-US', { weekday: 'long', day: "numeric", month: "short" })
     }
     return (
-        <div style={{ backgroundColor: "grey", width: "160px", borderRadius: "6px", padding: "30px" }}>
-            <p style={{ fontWeight: "bold" }}>Five days Forecast</p>
-            <div>
+        <div style={{ backgroundColor: "grey", borderRadius: "6px", padding: "30px" }}>
+            <p style={{ fontWeight: "bold", textAlign: 'center' }}>Five days Forecast</p>
+            <div style={{ display: 'flex', overflowX: 'auto', flexWrap: 'nowrap', justifyContent: "space-between", gap: '20px' }}>
                 {filteredData?.map((item, index) => (
-                    <div key={index} className="weather-item">
-                        <p><strong>Temp:</strong> {Math.round(item.main.temp)}°c</p>
-                        <p><strong>Date:</strong>{dateFormat(item.dt)}</p>
-                        <p><strong>Cloud Cover:</strong> {item.clouds.all}%</p>
-                        <p><strong>Desc:</strong> {item.weather[0].description}</p>
-                        <img src={`https://openweathermap.org/img/w/${item?.weather[0].icon}.png`} alt="img" />
-                        {index < filteredData.length - 1 && (
-                            <hr style={{
-                                border: '0',
-                                borderTop: '1px solid #ccc',
-                                margin: '10px 0'
-                            }} />
-                        )}
+                    <div key={index} className="weather-card" style={{
+                        backgroundColor: 'white',
+                        borderRadius: '10px',
+                        padding: '20px',
+                        minWidth: '160px',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                        textAlign: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                    }}>
+                        <img src={`https://openweathermap.org/img/w/${item?.weather[0].icon}.png`} alt="weather icon" style={{ width: '50px', height: '50px' }} />
+                        <p style={{ fontSize: "35px", fontWeight: "bold", paddingBottom: "5px" }} >{Math.round(item.main.temp)}°c</p>
+                        <p style={{ fontWeight: "bold", paddingTop: "5px", paddingBottom: "5px", margin: 0 }} > <strong>Humidity:</strong> {item.main.humidity}%</p>
+                        <p style={{ fontWeight: "bold", paddingTop: "5px", paddingBottom: "5px", margin: 0 }} >{dateFormat(item.dt)}</p>
+                        {/* <p style={{ fontWeight: "bold", }} ><strong>Cloud Cover:</strong> {item.clouds.all}%</p> */}
+                        < p style={{ fontWeight: "bold", paddingTop: "5px", paddingBottom: "5px", margin: 0 }} > {item.weather[0].description}</p>
                     </div>
-                ))}
-            </div>
-
-        </div>
+                ))
+                }
+            </div >
+        </div >
     )
 }
 
